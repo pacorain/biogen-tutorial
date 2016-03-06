@@ -1,4 +1,4 @@
-// currently unused space
+var facts = require("./facts.json");
 
 if (process.argv[2] == "generate") {
     generateBio();
@@ -9,8 +9,18 @@ if (process.argv[2] == "generate") {
 }
 
 function generateBio() {
-    console.log("Generate a bio.");
-    return "generated bio";
+    var bio = randomItem(facts.bio).text;
+    console.log('Generated: "' + bio + '"');
+    return bio;
+}
+
+function randomItem(list) {
+    var randomItemNumber = randomInt(list.length)
+    return list[randomItemNumber];
+}
+
+function randomInt(limit) {
+    return Math.floor(Math.random() * limit);
 }
 
 function updateBio(bio) {
